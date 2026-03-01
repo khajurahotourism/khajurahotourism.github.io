@@ -1,6 +1,12 @@
 import { Link } from "wouter";
-import { Menu } from "lucide-react";
+import { Menu, Globe, ShoppingBag, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
   return (
@@ -13,9 +19,25 @@ export function Navbar() {
         </Link>
         
         <div className="hidden md:flex gap-8 items-center">
-          <Link href="#about"><a className="text-sm uppercase tracking-widest hover:text-primary transition-colors">History</a></Link>
-          <Link href="#temples"><a className="text-sm uppercase tracking-widest hover:text-primary transition-colors">The Temples</a></Link>
-          <Link href="#visitor-info"><a className="text-sm uppercase tracking-widest hover:text-primary transition-colors">Plan Your Visit</a></Link>
+          <Link href="/#about"><a className="text-sm uppercase tracking-widest hover:text-primary transition-colors font-medium">History</a></Link>
+          <Link href="/#temples"><a className="text-sm uppercase tracking-widest hover:text-primary transition-colors font-medium">Temples</a></Link>
+          <Link href="/shop"><a className="text-sm uppercase tracking-widest hover:text-primary transition-colors font-medium flex items-center gap-1.5"><ShoppingBag className="w-4 h-4" /> Shop</a></Link>
+          <Link href="/contact"><a className="text-sm uppercase tracking-widest hover:text-primary transition-colors font-medium flex items-center gap-1.5"><Phone className="w-4 h-4" /> Contact</a></Link>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm" className="gap-2 uppercase tracking-widest text-xs font-bold">
+                <Globe className="h-4 w-4 text-primary" />
+                EN
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-background border-border">
+              <DropdownMenuItem className="cursor-pointer">English (EN)</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">Hindi (HI)</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">French (FR)</DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">German (DE)</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         <Button variant="ghost" size="icon" className="md:hidden" data-testid="button-mobile-menu">
