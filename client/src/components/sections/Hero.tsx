@@ -1,37 +1,66 @@
 import heroImg from "@/assets/images/hero.jpg";
 import { Button } from "@/components/ui/button";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 export function Hero() {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+      <motion.div style={{ y: y1 }} className="absolute inset-0 z-0">
         <img 
           src={heroImg} 
-          alt="Khajuraho Temple at sunset" 
-          className="w-full h-full object-cover object-center scale-105 animate-in fade-in zoom-in duration-1000"
+          alt="Khajuraho Temple Detail" 
+          className="w-full h-full object-cover opacity-70 scale-110"
         />
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-background" />
+      </motion.div>
 
       <div className="container relative z-10 px-4 text-center">
-        <span className="inline-block animate-in slide-in-from-bottom-4 fade-in duration-700 delay-100 mb-4 text-primary-foreground/80 tracking-[0.3em] text-sm uppercase">
-          UNESCO World Heritage Site
-        </span>
-        <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 drop-shadow-lg animate-in slide-in-from-bottom-8 fade-in duration-1000 delay-200">
-          Poetry in <span className="text-primary-foreground italic font-light">Stone</span>
-        </h1>
-        <p className="text-white/90 max-w-2xl mx-auto text-lg md:text-xl font-light mb-10 drop-shadow animate-in slide-in-from-bottom-4 fade-in duration-700 delay-300 leading-relaxed">
-          Journey into the heart of India's ancient architectural brilliance. Discover the magnificent 10th-century temples of Khajuraho, where every carving tells a timeless story.
-        </p>
-        
-        <div className="animate-in slide-in-from-bottom-4 fade-in duration-700 delay-500">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 text-lg tracking-wide uppercase transition-all hover:scale-105" data-testid="button-explore">
-            Explore the Temples
-          </Button>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="space-y-6"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border-white/10 text-white/80 text-[10px] uppercase tracking-[0.4em] font-bold mx-auto mb-4">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            UNESCO World Heritage Site
+          </div>
+          
+          <h1 className="font-serif text-6xl md:text-8xl lg:text-[10rem] text-white leading-none tracking-tighter reveal-text">
+            Stone <br />
+            <span className="italic font-light text-primary-foreground drop-shadow-2xl">Echoes</span>
+          </h1>
+          
+          <p className="text-white/70 max-w-xl mx-auto text-lg md:text-xl font-light leading-relaxed reveal-text [animation-delay:400ms]">
+            Witness the 10th-century Chandela masterpiece where spiritual devotion meets the ultimate celebration of human form.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center pt-8 reveal-text [animation-delay:600ms]">
+            <Button size="lg" className="h-14 px-10 rounded-2xl bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-bold uppercase tracking-widest group shadow-2xl shadow-primary/40">
+              Begin Journey
+              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+            <Button size="lg" variant="ghost" className="h-14 px-10 rounded-2xl text-white hover:bg-white/10 text-sm font-bold uppercase tracking-widest border border-white/20">
+              Virtual Tour
+            </Button>
+          </div>
+        </motion.div>
       </div>
+
+      <motion.div 
+        style={{ opacity }}
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white/40 flex flex-col items-center gap-2"
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Scroll to Explore</span>
+        <ChevronDown className="w-5 h-5" />
+      </motion.div>
     </section>
   );
 }
