@@ -395,6 +395,11 @@ export function VisitorInfo() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
+                    <div className="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                      <p className="text-xs text-white/95 leading-relaxed">
+                        {t(place.noteKey)}
+                      </p>
+                    </div>
                   </div>
                   <div className="flex items-center justify-between gap-3">
                     <h4 className="text-base font-serif">{t(place.nameKey)}</h4>
@@ -402,12 +407,6 @@ export function VisitorInfo() {
                       {t(place.distanceKey)}
                     </span>
                   </div>
-                  <p className="text-sm font-light text-muted-foreground mt-2">
-                    {t(place.noteKey)}
-                  </p>
-                  <p className="text-[10px] uppercase tracking-widest font-bold text-primary/80 mt-3">
-                    {place.sourceLabel}
-                  </p>
                 </a>
               ))}
             </div>

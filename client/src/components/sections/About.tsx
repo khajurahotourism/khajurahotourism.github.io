@@ -97,9 +97,9 @@ export function About() {
             </div>
 
             <div className="about__stats grid sm:grid-cols-3 gap-4 pt-4 max-w-3xl">
-              <CountStat target={25} label="Surviving Temples" />
-              <CountStat target={85} label="Originally Built" />
-              <CountStat target={1000} label="Years Old" />
+              <CountStat target={25} label={t("about.counter_surviving")} />
+              <CountStat target={85} label={t("about.counter_originally_built")} />
+              <CountStat target={1000} label={t("about.counter_years_old")} />
             </div>
           </motion.div>
 

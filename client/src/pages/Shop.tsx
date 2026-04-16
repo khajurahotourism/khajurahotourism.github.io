@@ -3,9 +3,12 @@ import { Footer } from "@/components/layout/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
-import img1 from "@/assets/images/gallery_1.jpg";
-import img2 from "@/assets/images/gallery_2.jpg";
-import img3 from "@/assets/images/gallery_3.jpg";
+import stoneReplicaImg from "@/assets/images/curated/shop/shop-stone-replica.webp";
+import artPrintImg from "@/assets/images/curated/shop/shop-art-print.jpg";
+import architectureBookImg from "@/assets/images/curated/shop/shop-architecture-book.webp";
+import artisanApparelImg from "@/assets/images/curated/shop/shop-handloom-apparel.jpg";
+import artisanJewelryImg from "@/assets/images/curated/shop/shop-artisan-jewelry.jpg";
+import metalcraftImg from "@/assets/images/curated/shop/shop-metalcraft.jpg";
 import { useToast } from "@/hooks/use-toast";
 import { useI18n } from "@/lib/i18n";
 import type { TranslationKey } from "@/lib/translations";
@@ -21,22 +24,43 @@ const PRODUCTS: Array<{
     id: 1,
     nameKey: "shop.product_1_name",
     price: "\u20b92,499",
-    image: img1,
+    image: stoneReplicaImg,
     categoryKey: "shop.category_decor",
   },
   {
     id: 2,
     nameKey: "shop.product_2_name",
     price: "\u20b9899",
-    image: img2,
+    image: artPrintImg,
     categoryKey: "shop.category_art",
   },
   {
     id: 3,
     nameKey: "shop.product_3_name",
     price: "\u20b91,250",
-    image: img3,
+    image: architectureBookImg,
     categoryKey: "shop.category_books",
+  },
+  {
+    id: 4,
+    nameKey: "shop.product_4_name",
+    price: "\u20b91,999",
+    image: artisanApparelImg,
+    categoryKey: "shop.category_handloom_apparel",
+  },
+  {
+    id: 5,
+    nameKey: "shop.product_5_name",
+    price: "\u20b91,450",
+    image: artisanJewelryImg,
+    categoryKey: "shop.category_artisan_jewelry",
+  },
+  {
+    id: 6,
+    nameKey: "shop.product_6_name",
+    price: "\u20b93,200",
+    image: metalcraftImg,
+    categoryKey: "shop.category_metalcraft",
   },
 ];
 

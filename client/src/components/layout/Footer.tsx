@@ -5,6 +5,8 @@ import { useSectionNav } from "@/lib/section-nav";
 export function Footer() {
   const { t } = useI18n();
   const { goToSection } = useSectionNav();
+  const supportEmail = "khajurahocityoftemple@gmail.com";
+  const emailLink = `mailto:${supportEmail}?cc=${supportEmail}`;
 
   return (
     <footer className="bg-foreground text-background py-16">
@@ -65,7 +67,14 @@ export function Footer() {
               <li>{t("footer.mptourism")}</li>
               <li>{t("footer.khajuraho_chhatarpur")}</li>
               <li>{t("footer.madhya_pradesh_india")}</li>
-              <li className="pt-4 text-primary">khajurahocityoftemple@gmail.com</li>
+              <li className="pt-4">
+                <a
+                  href={emailLink}
+                  className="text-primary hover:underline"
+                >
+                  {supportEmail}
+                </a>
+              </li>
               <li>
                 <a
                   href="https://www.instagram.com/khajuraho_city_of_temple/?hl=en"

@@ -90,7 +90,7 @@ export function Hero() {
               className="h-14 px-10 rounded-2xl bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-bold uppercase tracking-widest group shadow-2xl shadow-primary/40"
             >
               <>
-                Book Your Bespoke Getaway
+                {t("hero.book_bespoke")}
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </>
             </Button>
@@ -109,14 +109,14 @@ export function Hero() {
 
       <motion.div
         style={{ opacity }}
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white/40 flex flex-col items-center gap-2"
+        animate={{ y: [0, 12, 0], scale: [1, 1.05, 1] }}
+        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white/90 drop-shadow-[0_0_12px_rgba(255,255,255,0.45)] flex flex-col items-center gap-2"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] font-bold">
+        <span className="text-[11px] uppercase tracking-[0.3em] font-extrabold">
           {t("hero.scroll_explore")}
         </span>
-        <ChevronDown className="w-5 h-5" />
+        <ChevronDown className="w-6 h-6" />
       </motion.div>
 
       <div className="absolute bottom-8 right-8 z-10 hidden md:flex items-center gap-2">

@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
+import "dotenv/config";
 
 const app = express();
 const httpServer = createServer(app);
@@ -108,6 +109,20 @@ app.use((req, res, next) => {
     listenOptions,
     () => {
       log(`serving on port ${port}`);
+      const smtpConfigured = Boolean(
+        process.env.SMTP_HOST &&
+          process.env.SMTP_PORT &&
+          process.env.SMTP_USER &&
+          process.env.SMTP_PASS,
+      );
+      if (smtpConfigured) {
+        log("SMTP is configured for contact email delivery", "mail");
+      } else {
+        log(
+          "SMTP is NOT configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS (and optional SMTP_FROM).",
+          "mail",
+        );
+      }
     },
   );
 })();

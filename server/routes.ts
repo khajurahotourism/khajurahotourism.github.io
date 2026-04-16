@@ -2,10 +2,13 @@ import type { Express } from "express";
 import type { Server } from "http";
 import { randomUUID } from "crypto";
 import { z } from "zod";
+import nodemailer from "nodemailer";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(120),
   email: z.string().trim().email().max(320),
+  phoneCountryCode: z.string().trim().regex(/^\+\d{1,4}$/),
+  phoneNumber: z.string().trim().regex(/^\d{6,15}$/),
   subject: z.string().trim().min(1).max(200),
   message: z.string().trim().min(1).max(5000),
 });
@@ -33,6 +36,8 @@ type SubscriberEntry = {
 const contactMessages: ContactEntry[] = [];
 const subscribers: SubscriberEntry[] = [];
 const translationCache = new Map<string, string>();
+
+const CONTACT_RECEIVER_EMAIL = "khajurahocityoftemple@gmail.com";
 
 function zodIssuesToMessage(error: z.ZodError): string {
   return error.issues.map((issue) => issue.message).join("; ");
@@ -97,8 +102,30 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express,
 ): Promise<Server> {
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpPort = Number(process.env.SMTP_PORT ?? "587");
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
+  const smtpFrom = process.env.SMTP_FROM ?? smtpUser ?? CONTACT_RECEIVER_EMAIL;
+
+  const mailTransporter =
+    smtpHost && smtpUser && smtpPass
+      ? nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpPort === 465,
+          auth: {
+            user: smtpUser,
+            pass: smtpPass,
+          },
+        })
+      : null;
+
   app.get("/api/health", (_req, res) => {
-    res.json({ ok: true });
+    res.json({
+      ok: true,
+      smtpConfigured: Boolean(mailTransporter),
+    });
   });
 
   app.post("/api/translate", async (req, res) => {
@@ -122,7 +149,7 @@ export async function registerRoutes(
     });
   });
 
-  app.post("/api/contact", (req, res) => {
+  app.post("/api/contact", async (req, res) => {
     const parsed = contactSchema.safeParse(req.body);
     if (!parsed.success) {
       return res.status(400).json({
@@ -136,6 +163,57 @@ export async function registerRoutes(
       ...parsed.data,
     };
     contactMessages.push(entry);
+
+    if (!mailTransporter) {
+      return res.status(500).json({
+        message:
+          "Email delivery is not configured on server. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, and optional SMTP_FROM.",
+      });
+    }
+
+    const fullPhone = `${entry.phoneCountryCode} ${entry.phoneNumber}`;
+    const subject = `[Khajuraho Contact] ${entry.subject}`;
+    const textBody = [
+      "New message received from Khajuraho website contact form.",
+      "",
+      `Name: ${entry.name}`,
+      `Email: ${entry.email}`,
+      `Phone: ${fullPhone}`,
+      `Subject: ${entry.subject}`,
+      "",
+      "Message:",
+      entry.message,
+      "",
+      `Submitted At (UTC): ${entry.createdAt}`,
+      `Message ID: ${entry.id}`,
+    ].join("\n");
+
+    const htmlBody = `
+      <h2>New Contact Message</h2>
+      <p><strong>Name:</strong> ${entry.name}</p>
+      <p><strong>Email:</strong> ${entry.email}</p>
+      <p><strong>Phone:</strong> ${fullPhone}</p>
+      <p><strong>Subject:</strong> ${entry.subject}</p>
+      <p><strong>Message:</strong><br/>${entry.message.replace(/\n/g, "<br/>")}</p>
+      <hr/>
+      <p><strong>Submitted At (UTC):</strong> ${entry.createdAt}</p>
+      <p><strong>Message ID:</strong> ${entry.id}</p>
+    `;
+
+    try {
+      await mailTransporter.sendMail({
+        from: smtpFrom,
+        to: CONTACT_RECEIVER_EMAIL,
+        replyTo: entry.email,
+        subject,
+        text: textBody,
+        html: htmlBody,
+      });
+    } catch {
+      return res.status(502).json({
+        message: "Message saved, but email delivery failed. Check SMTP configuration.",
+      });
+    }
 
     return res.status(201).json({
       ok: true,
