@@ -1,43 +1,98 @@
 import { Link } from "wouter";
+import { useI18n } from "@/lib/i18n";
+import { useSectionNav } from "@/lib/section-nav";
 
 export function Footer() {
+  const { t } = useI18n();
+  const { goToSection } = useSectionNav();
+
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-12 mb-12 border-b border-background/10 pb-12">
           <div>
-            <h3 className="font-serif text-3xl font-bold text-primary mb-6 tracking-wider">KHAJURAHO</h3>
+            <h3 className="font-serif text-3xl font-bold text-primary mb-6 tracking-wider">
+              {t("brand.name")}
+            </h3>
             <p className="text-background/70 font-light leading-relaxed max-w-sm">
-              A tribute to human creativity, love, and spiritual devotion carved in enduring sandstone over a millennium ago.
+              {t("footer.tagline")}
             </p>
           </div>
-          
+
           <div>
-            <h4 className="font-serif text-xl mb-6">Quick Links</h4>
+            <h4 className="font-serif text-xl mb-6">{t("footer.quick_links")}</h4>
             <ul className="space-y-3">
-              <li><Link href="#about"><a className="text-background/70 hover:text-primary transition-colors">History & Legacy</a></Link></li>
-              <li><Link href="#temples"><a className="text-background/70 hover:text-primary transition-colors">Temple Groups</a></Link></li>
-              <li><Link href="#visitor-info"><a className="text-background/70 hover:text-primary transition-colors">Visitor Information</a></Link></li>
-              <li><Link href="#"><a className="text-background/70 hover:text-primary transition-colors">Gallery</a></Link></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => goToSection("heritage")}
+                  className="bg-transparent border-0 p-0 text-background/70 hover:text-primary transition-colors"
+                >
+                  {t("footer.history_legacy")}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => goToSection("temples")}
+                  className="bg-transparent border-0 p-0 text-background/70 hover:text-primary transition-colors"
+                >
+                  {t("footer.temple_groups")}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => goToSection("visitor-info")}
+                  className="bg-transparent border-0 p-0 text-background/70 hover:text-primary transition-colors"
+                >
+                  {t("footer.visitor_information")}
+                </button>
+              </li>
+              <li>
+                <Link href="/shop">
+                  <a className="text-background/70 hover:text-primary transition-colors">
+                    {t("footer.gallery")}
+                  </a>
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-serif text-xl mb-6">Contact & Support</h4>
+            <h4 className="font-serif text-xl mb-6">{t("footer.contact_support")}</h4>
             <ul className="space-y-3 text-background/70 font-light">
-              <li>Madhya Pradesh Tourism</li>
-              <li>Khajuraho, Chhatarpur</li>
-              <li>Madhya Pradesh 471606, India</li>
-              <li className="pt-4 text-primary">info@mptourism.com</li>
+              <li>{t("footer.mptourism")}</li>
+              <li>{t("footer.khajuraho_chhatarpur")}</li>
+              <li>{t("footer.madhya_pradesh_india")}</li>
+              <li className="pt-4 text-primary">khajurahocityoftemple@gmail.com</li>
+              <li>
+                <a
+                  href="https://www.instagram.com/khajuraho_city_of_temple/?hl=en"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  @khajuraho_city_of_temple
+                </a>
+              </li>
             </ul>
           </div>
         </div>
-        
+
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-background/50 font-light">
-          <p>© {new Date().getFullYear()} Khajuraho Heritage Documentation. All rights reserved.</p>
+          <p>{t("footer.copyright", { year: new Date().getFullYear() })}</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <Link href="/privacy">
+              <a className="hover:text-primary transition-colors">
+                {t("footer.privacy_policy")}
+              </a>
+            </Link>
+            <Link href="/terms">
+              <a className="hover:text-primary transition-colors">
+                {t("footer.terms_service")}
+              </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -4,8 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: 'Lato', sans-serif;
-  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Lato', 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Gujarati', 'Noto Sans Malayalam', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Naskh Arabic', 'Noto Nastaliq Urdu', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  --font-serif: 'Playfair Display', 'Noto Serif', 'Noto Serif Devanagari', 'Noto Serif Bengali', 'Noto Serif Gujarati', 'Noto Serif Malayalam', 'Noto Serif Tamil', 'Noto Serif Telugu', 'Noto Naskh Arabic', 'Noto Nastaliq Urdu', serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -68,6 +68,75 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight;
+  }
+
+  html:lang(hi) h1,
+  html:lang(hi) h2,
+  html:lang(hi) h3,
+  html:lang(hi) h4,
+  html:lang(hi) h5,
+  html:lang(hi) h6,
+  html:lang(ta) h1,
+  html:lang(ta) h2,
+  html:lang(ta) h3,
+  html:lang(ta) h4,
+  html:lang(ta) h5,
+  html:lang(ta) h6,
+  html:lang(te) h1,
+  html:lang(te) h2,
+  html:lang(te) h3,
+  html:lang(te) h4,
+  html:lang(te) h5,
+  html:lang(te) h6,
+  html:lang(bn) h1,
+  html:lang(bn) h2,
+  html:lang(bn) h3,
+  html:lang(bn) h4,
+  html:lang(bn) h5,
+  html:lang(bn) h6,
+  html:lang(gu) h1,
+  html:lang(gu) h2,
+  html:lang(gu) h3,
+  html:lang(gu) h4,
+  html:lang(gu) h5,
+  html:lang(gu) h6,
+  html:lang(ml) h1,
+  html:lang(ml) h2,
+  html:lang(ml) h3,
+  html:lang(ml) h4,
+  html:lang(ml) h5,
+  html:lang(ml) h6,
+  html:lang(as) h1,
+  html:lang(as) h2,
+  html:lang(as) h3,
+  html:lang(as) h4,
+  html:lang(as) h5,
+  html:lang(as) h6,
+  html:lang(ar) h1,
+  html:lang(ar) h2,
+  html:lang(ar) h3,
+  html:lang(ar) h4,
+  html:lang(ar) h5,
+  html:lang(ar) h6,
+  html:lang(ks) h1,
+  html:lang(ks) h2,
+  html:lang(ks) h3,
+  html:lang(ks) h4,
+  html:lang(ks) h5,
+  html:lang(ks) h6,
+  html:lang(zh) h1,
+  html:lang(zh) h2,
+  html:lang(zh) h3,
+  html:lang(zh) h4,
+  html:lang(zh) h5,
+  html:lang(zh) h6,
+  html:lang(ja) h1,
+  html:lang(ja) h2,
+  html:lang(ja) h3,
+  html:lang(ja) h4,
+  html:lang(ja) h5,
+  html:lang(ja) h6 {
+    @apply font-sans tracking-normal;
   }
 }
 
