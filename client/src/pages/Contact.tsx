@@ -17,7 +17,7 @@ export default function Contact() {
   const { toast } = useToast();
   const { t } = useI18n();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const supportEmail = "khajurahocityoftemple@gmail.com";
+  const supportEmail = "khajurahocityoftemple@gmail.com, khajurahotourisminfo@gmail.com";
   const emailLink = `mailto:${supportEmail}?cc=${supportEmail}`;
   const countryCodeOptions = useMemo(() => {
     const displayNames = new Intl.DisplayNames(["en"], { type: "region" });

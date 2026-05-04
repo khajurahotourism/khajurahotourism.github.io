@@ -5,7 +5,7 @@ import { useSectionNav } from "@/lib/section-nav";
 export function Footer() {
   const { t } = useI18n();
   const { goToSection } = useSectionNav();
-  const supportEmail = "khajurahocityoftemple@gmail.com";
+  const supportEmail = "khajurahocityoftemple@gmail.com, khajurahotourisminfo@gmail.com";
   const emailLink = `mailto:${supportEmail}?cc=${supportEmail}`;
 
   return (

@@ -1,10 +1,17 @@
 ﻿import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Star } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import type { TranslationKey } from "@/lib/translations";
 import { useSectionNav } from "@/lib/section-nav";
+import {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
 
 const KANDARIYA_IMAGE =
   "https://www.mptourism.com/images/point-of-interest/Kandariya%20Mahadev1.webp";
@@ -203,6 +210,54 @@ const COMPONENT_LOCATIONS: Array<{
   },
 ];
 
+const VISITOR_TESTIMONIALS = [
+  {
+    quote:
+      "Standing before Kandariya Mahadeva at sunrise was one of the most profound moments of my life. The scale and detail of the carvings is simply breathtaking.",
+    name: "Sophie M.",
+    flag: "🇫🇷",
+    meta: "Solo traveller · Feb 2025",
+    rating: 5,
+    initials: "SM",
+  },
+  {
+    quote:
+      "The Light & Sound show in the evening was magical. We visited with family and everyone - from kids to grandparents - was completely captivated.",
+    name: "Rohan K.",
+    flag: "🇬🇧",
+    meta: "Family trip · Nov 2024",
+    rating: 5,
+    initials: "RK",
+  },
+  {
+    quote:
+      "As an architecture student, Khajuraho changed how I think about space and sculpture. The guided tour from this site was incredibly well organised.",
+    name: "Lena W.",
+    flag: "🇩🇪",
+    meta: "Cultural tour · Jan 2025",
+    rating: 5,
+    initials: "LW",
+  },
+  {
+    quote:
+      "The intricate carvings and architectural excellence left me speechless. Every corner tells a story that has been preserved through centuries.",
+    name: "Marco V.",
+    flag: "🇮🇹",
+    meta: "History enthusiast · Dec 2024",
+    rating: 5,
+    initials: "MV",
+  },
+  {
+    quote:
+      "Best cultural experience of my trip to India. The guides provided comprehensive knowledge about the temples and their historical significance.",
+    name: "Priya N.",
+    flag: "🇮🇳",
+    meta: "Group tour · Oct 2024",
+    rating: 5,
+    initials: "PN",
+  },
+];
+
 function getGoogleMapsLink(latitude: number, longitude: number) {
   return `https://www.google.com/maps?q=${latitude},${longitude}`;
 }
@@ -210,6 +265,37 @@ function getGoogleMapsLink(latitude: number, longitude: number) {
 export function Temples() {
   const { t } = useI18n();
   const { goToSection } = useSectionNav();
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [activeSlide, setActiveSlide] = useState(0);
+  const totalItems = VISITOR_TESTIMONIALS.length;
+
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const onSelect = () => {
+      const scrollSnap = carouselApi.selectedScrollSnap();
+      setActiveSlide(scrollSnap);
+    };
+
+    onSelect();
+    carouselApi.on("select", onSelect);
+
+    return () => {
+      carouselApi.off("select", onSelect);
+    };
+  }, [carouselApi]);
+
+  // Auto-rotate carousel every 10 seconds
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const autoRotate = setInterval(() => {
+      const nextSlide = (activeSlide + 1) % totalItems;
+      carouselApi.scrollTo(nextSlide);
+    }, 10000);
+
+    return () => clearInterval(autoRotate);
+  }, [carouselApi, activeSlide, totalItems]);
 
   return (
     <section id="temples" className="py-32 bg-secondary/20">
@@ -283,6 +369,116 @@ export function Temples() {
               </Card>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-20 rounded-3xl border border-border/50 bg-secondary/20 p-8 md:p-12 shadow-lg hidden">
+          <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <p className="text-primary text-xs uppercase tracking-[0.2em] font-bold mb-2">
+                Visitor Experiences
+              </p>
+              <h3 className="text-4xl md:text-5xl font-serif text-foreground mb-2">
+                Voices from <span className="italic">Around the World</span>
+              </h3>
+              <p className="text-muted-foreground font-light max-w-2xl text-lg">
+                Real stories from travellers who walked these ancient stones.
+              </p>
+            </div>
+          </div>
+
+          <div className="relative flex items-center justify-center">
+            <Carousel
+              setApi={setCarouselApi}
+              opts={{ 
+                align: "center",
+                loop: true,
+                startIndex: 0,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {VISITOR_TESTIMONIALS.map((item, index) => (
+                  <CarouselItem
+                    key={`${item.name}-${index}`}
+                    className="pl-4 basis-full md:basis-1/3 lg:basis-1/3"
+                  >
+                    <div className={`transition-all duration-500 ${
+                      index === activeSlide 
+                        ? "scale-100 opacity-100" 
+                        : "scale-75 opacity-40"
+                    }`}>
+                      <article className="rounded-2xl border border-primary/15 bg-card p-6 shadow-sm">
+                        {/* Quotation Mark */}
+                        <div className="mb-3">
+                          <p className="text-4xl leading-none text-primary/40 font-light">
+                            "
+                          </p>
+                        </div>
+
+                        {/* Stars */}
+                        <div className="flex items-center gap-0.5 mb-5">
+                          {Array.from({ length: item.rating }).map((_, starIndex) => (
+                            <Star
+                              key={`star-${index}-${starIndex}`}
+                              className="w-4 h-4 fill-primary text-primary"
+                            />
+                          ))}
+                        </div>
+
+                        {/* Quote Text */}
+                        <p className="text-sm text-foreground/85 leading-relaxed mb-6 line-clamp-4 min-h-[80px]">
+                          {item.quote}
+                        </p>
+
+                        {/* Verified Badge */}
+                        <div className="mb-5 pb-5 border-b border-border">
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/15 px-3 py-1.5 text-[11px] font-semibold text-accent">
+                            <ShieldCheck className="w-3.5 h-3.5" />
+                            Verified visitor
+                          </span>
+                        </div>
+
+                        {/* User Info */}
+                        <div className="flex items-center gap-3">
+                          <div className="w-11 h-11 rounded-full bg-primary/20 text-primary font-bold text-xs flex items-center justify-center flex-shrink-0">
+                            {item.initials}
+                          </div>
+                          <div className="min-w-0">
+                            <p className="font-semibold text-foreground text-sm">
+                              {item.name}
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              {item.meta}
+                            </p>
+                          </div>
+                          <div className="ml-auto text-base">
+                            {item.flag}
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+
+          {/* Navigation Dots Only - No Buttons */}
+          <div className="flex items-center justify-center gap-2 mt-10">
+            {VISITOR_TESTIMONIALS.map((_, index) => (
+              <button
+                key={`testimonial-dot-${index}`}
+                type="button"
+                aria-label={`Go to testimonial ${index + 1}`}
+                onClick={() => carouselApi?.scrollTo(index)}
+                className={`rounded-full transition-all duration-300 cursor-pointer ${
+                  index === activeSlide
+                    ? "w-3 h-3 bg-primary"
+                    : "w-2 h-2 bg-primary/30 hover:bg-primary/60"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="mt-24 bg-card/80 backdrop-blur-sm border border-border/60 rounded-3xl p-8 md:p-10 shadow-xl">

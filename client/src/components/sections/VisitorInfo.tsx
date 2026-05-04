@@ -125,7 +125,14 @@ export function VisitorInfo() {
   const { toast } = useToast();
   const { t } = useI18n();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const festivalCollage = [festival1, festival2, festival3, festival4, festival5, festival6];
+  const festivalCollage = [
+    "https://upload.wikimedia.org/wikipedia/commons/5/57/Stage_at_Kandariya_Mahadeva_Temple_during_Khajuraho_Dance_Festival_2026_002.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Arunima_Kumar_at_Khajuraho_Dance_Festival.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/7/74/Shinjini_kathak_dance_indian_classical_khajuraho_festival.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/d/d0/Chhau_dance_troupe_performance_Khajuraho_Dance_Festival_2026_%2844%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/6/65/Chhau_dance_troupe_performance_Khajuraho_Dance_Festival_2026_%288%29.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/2/22/Chhau_dance_troupe_performance_Khajuraho_Dance_Festival_2026_%2845%29.jpg"
+  ];
 
   const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
