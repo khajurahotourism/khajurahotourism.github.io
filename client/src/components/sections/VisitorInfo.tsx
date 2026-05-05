@@ -8,21 +8,27 @@ import { apiRequest } from "@/lib/queryClient";
 import { useI18n } from "@/lib/i18n";
 import type { TranslationKey } from "@/lib/translations";
 import img4 from "@/assets/images/gallery_4.jpg";
-import nearbyRaneh from "@/assets/images/curated/nearby-raneh.jpg";
 import nearbyPandav from "@/assets/images/curated/nearby-pandav.webp";
 import nearbyPanna from "@/assets/images/curated/nearby-panna.jpg";
 import nearbyDhubela from "@/assets/images/curated/nearby-dhubela.jpg";
-import nearbyJain from "@/assets/images/curated/nearby-jain.jpg";
 import todoRanehNew from "@/assets/images/curated/todo-raneh-new.jpg";
 import todoJainMuseumNew from "@/assets/images/curated/todo-jain-museum-new.webp";
 import nearbyRanehNew from "@/assets/images/curated/nearby-raneh-new.jpg";
 import nearbyDhubelaNew from "@/assets/images/curated/nearby-dhubela-new.webp";
-import festival1 from "@/assets/images/curated/festival-1.jpeg";
-import festival2 from "@/assets/images/curated/festival-2.jpeg";
-import festival3 from "@/assets/images/curated/festival-3.webp";
-import festival4 from "@/assets/images/curated/festival-4.jpg";
-import festival5 from "@/assets/images/curated/festival-5.jpg";
-import festival6 from "@/assets/images/curated/festival-6.jpg";
+import nearbyJain from "@/assets/images/curated/nearby-jain.jpg";
+import ranehFallsLocal from "@/assets/images/visitor-final/raneh-falls.jpg";
+import dhubelaMuseumExterior from "@/assets/images/visitor-final/dhubela-museum-exterior.jpg";
+import dhubelaMuseumGallery from "@/assets/images/visitor-final/dhubela-museum-gallery.jpg";
+import ruralLifeHomestay from "@/assets/images/visitor-final/rural-life-homestay.webp";
+import jainMuseumLocal from "@/assets/images/visitor-final/jain-museum.jpg";
+import userRanehExcursion from "@/assets/images/visitor-user-final/raneh-falls-excursion.jpeg";
+import userRanehFalls from "@/assets/images/visitor-user-final/raneh-falls-user.jpg";
+import userRanehNearbyOnly from "@/assets/images/visitor-user-final/raneh-falls-nearby-only.png";
+import userRanehExcursionFinal from "@/assets/images/visitor-user-final/raneh-excursion-user-final.png";
+import userDhubelaMuseum from "@/assets/images/visitor-user-final/chhatrasal-dhubela.jpg";
+import userRuralLife from "@/assets/images/visitor-user-final/rural-life-ladhpura.webp";
+import userJainRegionalCircuit from "@/assets/images/visitor-user-final/jain-regional-circuit.webp";
+import userJainMuseum from "@/assets/images/visitor-user-final/jain-museum-sculptures.jpg";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -52,21 +58,21 @@ const THINGS_TO_DO: Array<{
     titleKey: "visitor.do_3_title",
     descKey: "visitor.do_3_desc",
     href: "https://www.mptourism.com/raneh-falls-near-khajuralo-and-panna.html",
-    image: todoRanehNew,
+    image: userRanehExcursionFinal,
     sourceLabel: "MP Tourism",
   },
   {
     titleKey: "visitor.do_4_title",
     descKey: "visitor.do_4_desc",
     href: "https://www.mptourism.com/destination-khajuraho.php",
-    image: todoJainMuseumNew,
+    image: userJainRegionalCircuit,
     sourceLabel: "MP Tourism",
   },
   {
     titleKey: "visitor.do_5_title",
     descKey: "visitor.do_5_desc",
     href: "https://www.mptourism.com/pdf/Khajuraho/Rural-Life-Experiences-Around-Khajuraho.pdf",
-    image: "https://www.mptourism.com/web/image/catalog/Blog-2025/Ibaad-Homestay.webp",
+    image: userRuralLife,
     sourceLabel: "MP Tourism",
   },
 ];
@@ -84,7 +90,7 @@ const NEARBY_ATTRACTIONS: Array<{
     distanceKey: "visitor.nearby_1_distance",
     noteKey: "visitor.nearby_1_note",
     href: "https://www.mptourism.com/raneh-falls-near-khajuralo-and-panna.html",
-    image: nearbyRanehNew,
+    image: userRanehNearbyOnly,
     sourceLabel: "MP Tourism",
   },
   {
@@ -108,7 +114,7 @@ const NEARBY_ATTRACTIONS: Array<{
     distanceKey: "visitor.nearby_4_distance",
     noteKey: "visitor.nearby_4_note",
     href: "https://www.mptourism.com/destination-khajuraho.php",
-    image: nearbyDhubelaNew,
+    image: userDhubelaMuseum,
     sourceLabel: "MP Tourism",
   },
   {
@@ -116,7 +122,7 @@ const NEARBY_ATTRACTIONS: Array<{
     distanceKey: "visitor.nearby_5_distance",
     noteKey: "visitor.nearby_5_note",
     href: "https://www.mptourism.com/destination-khajuraho.php",
-    image: nearbyJain,
+    image: userJainMuseum,
     sourceLabel: "MP Tourism",
   },
 ];

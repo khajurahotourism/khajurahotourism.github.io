@@ -12,6 +12,8 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
+import component15UserImage from "@/assets/images/visitor-user-final/temples-article-15-user.png";
+import component14UserImageV2 from "@/assets/images/visitor-user-final/temples-article-14-user-v2.png";
 
 const KANDARIYA_IMAGE =
   "https://www.mptourism.com/images/point-of-interest/Kandariya%20Mahadev1.webp";
@@ -198,7 +200,7 @@ const COMPONENT_LOCATIONS: Array<{
     coordinates: "24.838722, 79.933056",
     latitude: 24.838722,
     longitude: 79.933056,
-    image: DULADEO_IMAGE,
+    image: component14UserImageV2,
   },
   {
     nameKey: "temples.component_name_15",
@@ -206,7 +208,7 @@ const COMPONENT_LOCATIONS: Array<{
     coordinates: "24.825161, 79.931038",
     latitude: 24.825161,
     longitude: 79.931038,
-    image: CHATURBHUJA_IMAGE,
+    image: component15UserImage,
   },
 ];
 
@@ -532,4 +534,3 @@ export function Temples() {
     </section>
   );
 }
-

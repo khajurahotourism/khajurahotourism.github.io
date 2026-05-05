@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useI18n } from "@/lib/i18n";
 
 export function WhatsAppButton() {
   const [showBubble, setShowBubble] = useState(true);
   const [isHidden, setIsHidden] = useState(false);
+  const { t } = useI18n();
 
   useEffect(() => {
     // Check if bubble was closed in this session
@@ -23,9 +25,8 @@ export function WhatsAppButton() {
     sessionStorage.setItem("waBubbleClosed", "1");
   };
 
-  const whatsappNumber = "919876543210"; // Replace with your WhatsApp Business number
-  const whatsappMessage =
-    "Hi, I'm interested in visiting Khajuraho and would like more information.";
+  const whatsappNumber = "917415109145"; // Replace with your WhatsApp Business number
+  const whatsappMessage = t("whatsapp.message");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     whatsappMessage
   )}`;
@@ -43,9 +44,9 @@ export function WhatsAppButton() {
             ✕
           </button>
           <p className="text-sm text-foreground leading-relaxed">
-            <strong className="text-primary">Have questions about your visit?</strong>
+            <strong className="text-primary">{t("whatsapp.questions")}</strong>
             <br />
-            Chat with us in English, Hindi & more — we usually reply in minutes! 🙏
+            {t("whatsapp.chat")}
           </p>
         </div>
       )}

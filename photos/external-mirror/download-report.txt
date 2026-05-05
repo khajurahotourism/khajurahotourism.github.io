@@ -1,0 +1,21 @@
+FAIL	https://upload.wikimedia.org/wikipedia/commons/2/22/Chhau_dance_troupe_performance_Khajuraho_Dance_Festival_2026_%2845%29.jpg	The remote server returned an error: (429) Too many requests. Please contact bot-traffic@wikimedia.org (fceb99d).
+FAIL	https://upload.wikimedia.org/wikipedia/commons/5/57/Stage_at_Kandariya_Mahadeva_Temple_during_Khajuraho_Dance_Festival_2026_002.jpg	The remote server returned an error: (429) Too many requests. Please contact bot-traffic@wikimedia.org (fceb99d).
+FAIL	https://upload.wikimedia.org/wikipedia/commons/6/65/Chhau_dance_troupe_performance_Khajuraho_Dance_Festival_2026_%288%29.jpg	The remote server returned an error: (429) Too many requests. Please contact bot-traffic@wikimedia.org (fceb99d).
+FAIL	https://upload.wikimedia.org/wikipedia/commons/7/74/Shinjini_kathak_dance_indian_classical_khajuraho_festival.jpg	The remote server returned an error: (429) Too many requests. Please contact bot-traffic@wikimedia.org (fceb99d).
+FAIL	https://upload.wikimedia.org/wikipedia/commons/7/7c/Arunima_Kumar_at_Khajuraho_Dance_Festival.jpg	The remote server returned an error: (429) Too many requests. Please contact bot-traffic@wikimedia.org (fceb99d).
+FAIL	https://upload.wikimedia.org/wikipedia/commons/d/d0/Chhau_dance_troupe_performance_Khajuraho_Dance_Festival_2026_%2844%29.jpg	The remote server returned an error: (429) Too many requests. Please contact bot-traffic@wikimedia.org (fceb99d).
+OK	https://www.mptourism.com/images/destination/khajuraho/profile_banner.webp	photos\external-mirror\07_profile_banner.webp
+OK	https://www.mptourism.com/images/destination/panna/profile_banner.png	photos\external-mirror\08_profile_banner.png
+OK	https://www.mptourism.com/images/point-of-interest/2-chaturbhuj-Temple.webp	photos\external-mirror\09_2-chaturbhuj-Temple.webp
+OK	https://www.mptourism.com/images/point-of-interest/Chaunsat%20Yogini.webp	photos\external-mirror\10_Chaunsat_20Yogini.webp
+OK	https://www.mptourism.com/images/point-of-interest/Kandariya%20Mahadev1.webp	photos\external-mirror\11_Kandariya_20Mahadev1.webp
+OK	https://www.mptourism.com/images/point-of-interest/khajuraho_pop21.webp	photos\external-mirror\12_khajuraho_pop21.webp
+OK	https://www.mptourism.com/images/point-of-interest/khajuraho_pop5-1.webp	photos\external-mirror\13_khajuraho_pop5-1.webp
+OK	https://www.mptourism.com/images/point-of-interest/khajuraho_pop6.webp	photos\external-mirror\14_khajuraho_pop6.webp
+OK	https://www.mptourism.com/images/point-of-interest/khajuraho-poi2.webp	photos\external-mirror\15_khajuraho-poi2.webp
+OK	https://www.mptourism.com/images/point-of-interest/Laxman%20Temple.webp	photos\external-mirror\16_Laxman_20Temple.webp
+OK	https://www.mptourism.com/web/image/catalog/2024/Matangeshwar%20Temple.jpg	photos\external-mirror\17_Matangeshwar_20Temple.jpg
+OK	https://www.mptourism.com/web/image/catalog/Blog%20Image/Adivart%20Tribal%20and%20Folk%20Art%20Museum.jpg	photos\external-mirror\18_Adivart_20Tribal_20and_20Folk_20Art_20Museum.jpg
+OK	https://www.mptourism.com/web/image/catalog/Blog%20Image/Chitragupta%20Temple-khajuraho_pop6-min.jpg	photos\external-mirror\19_Chitragupta_20Temple-khajuraho_pop6-min.jpg
+OK	https://www.mptourism.com/web/image/catalog/Blog-2025/Vamana-Temple-%20Khajuraho.webp	photos\external-mirror\20_Vamana-Temple-_20Khajuraho.webp
+OK	https://www.mptourism.com/web/image/catalog/Khajuraho-Story-2.jpg	photos\external-mirror\21_Khajuraho-Story-2.jpg
